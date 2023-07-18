@@ -1,4 +1,4 @@
-const Reslist =  [
+const Resobj =  [
       {
         "type": "restaurant",
         "data": {
@@ -899,4 +899,4 @@ const Reslist =  [
         },
         "subtype": "basic"
       }]
-export default resobj;
+export default Resobj;

@@ -1,12 +1,13 @@
 import React from "react";
 import  ReactDOM  from "react";
-import "../swiggy/index.css"
+import "../swiggy/index.css";
+import {CDN_URL} from "./utils/constants"
 const Header = () => { return(
     <div className="header ">
     <div className="logo-container">
     <img
      className="logo"
-     src ="https://cdn2.vectorstock.com/i/1000x1000/02/61/restaurant-cafe-logo-menu-dish-food-vector-8420261.jpg"
+     src ={CDN_URL}
     />
      </div>
     <div className="nav-item">
