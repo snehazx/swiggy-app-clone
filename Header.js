@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import  ReactDOM  from "react";
 import "../swiggy/index.css";
 import {CDN_URL} from "./utils/constants"
-const Header = () => { return(
-    <div className="header ">
+import { useState } from "react";
+import { Link } from "react-router-dom";
+
+const Header = () => {
+  const [btnNameReact,setBtnNameReact] = useState("login");
+  
+  return(
+   
+      <div className="header ">
     <div className="logo-container">
     <img
      className="logo"
@@ -12,9 +19,22 @@ const Header = () => { return(
      </div>
     <div className="nav-item">
     <ul>
-    <li>Home</li>
-    <li>About Us</li>
-    <li>Contact Us</li>
+    <button  className ="login" onClick={() => {
+     btnNameReact ==="login"?
+      
+      setBtnNameReact("logout"):
+      setBtnNameReact("login");
+
+      }}
+  >
+    {btnNameReact}
+    </button>
+   <Link to ="/">hom </Link>
+   <Link to ="/About" >about</Link>
+    <Link to ="/Contact">contact</Link>
+    <Link to ="/">cart</Link>
+
+    <Link to ="/restaurant/:resid"></Link>
     <li>Cart</li>
     </ul>
     </div>
