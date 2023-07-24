@@ -2,43 +2,61 @@
 import { useParams} from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
+import { menu_link } from "./utils/constants";
 const Menu = () => {
-    const [resinfo,setresinfo] = useState(null);
-    // const resid = useParams();
-    const {resid} = useParams();
-    const useEffect =(() => fetchMenu(),[]);
-    
-    // const useEffect =(() =>{
-    //     fetchMenu();}, []);
-    //  const useEffect =(() => {fetchMenu();},[]);
-     const fetchMenu = async () => {
-        const data = await fetch("https://corsproxy.io/?https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.7381596&lng=77.133674&restaurantId=" + resid);
-        const json = await data.json();
+       const [resinfo,setresinfo] = useState([]);  
+        const {resid} = useParams();
+    useEffect(() => {
+        fetchMenu();
+    }, []);
 
-        setresinfo(json.data);}
+    const fetchMenu = async () => {
+       
      
+       const data = await fetch( menu_link + resid);
+        const json = await data.json();
+        setresinfo(json.data);}
+   
+    // const {resid} = useParams();
+    // const resinfo = useRestaurantMenu();
+        if(resinfo.length===0){return <shimmer/>}  
+   
+          const{ name,cuisines,costfortwo } =  resinfo?.cards[0]?.card?.card?.info || {};
+        //   const  {itemCards}  = resinfo?.cards[2]?.GroupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards;
+//           if(!itemCards){
+//             return<h1>Loading...<h1>;
+// }   
+const menuItems =
+    resinfo.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[1].card
+      ?.card?.itemCards;
 
-
-     const{name,costfortwo,cuisines} =  resinfo?.cards[0].card?.card?.info;
-//   const {itemcards}  = data?.cards[2]?.GroupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
-//   card.card.dishes.name
-//   card?.card?.gridElements?.infoWithStyle?.offers?.
-//    card.info.name
-// dishes.info.name
+// const menuItemCards =
+// resinfo?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter(
+//   (card) =>
+//     card?.card?.card?.["@type"] ==
+//     "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+// );
+        {/* //   const { itemCards}  = resinfo?.cards[2]?.GroupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card; */}
+    //     const {itemCards} =
+    // resinfo?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter(
+    //   (card) =>
+    //     card?.card?.card?.["@type"] ==
+    //     "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+    // ).card?.card;
 return(
-
     <div>
    <h1>{name}</h1> 
     <p>{cuisines}</p>
    <h2>{costfortwo}</h2>
-   <h4>MENU</h4>
-   {/* <h3>{itemcards.map((item) => item.dishes.info.name)} */}
-   {/* </h3> */}
-     
+
+   <ul>
+   {menuItems.map((item) => 
+   <li key={item.card.info.id}>
+   {item.card.info.name}
+   </li>)}
+
+   </ul>
     </div>
    );
-
-
-
 ;}
  export default Menu;

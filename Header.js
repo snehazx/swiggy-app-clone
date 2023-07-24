@@ -4,10 +4,12 @@ import "../swiggy/index.css";
 import {CDN_URL} from "./utils/constants"
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "./useOnlineStatus";
 
 const Header = () => {
   const [btnNameReact,setBtnNameReact] = useState("login");
-  
+  const  onlineStatus= useOnlineStatus();
+
   return(
    
       <div className="header ">
@@ -18,7 +20,7 @@ const Header = () => {
     />
      </div>
     <div className="nav-item">
-    <ul>
+  
     <button  className ="login" onClick={() => {
      btnNameReact ==="login"?
       
@@ -29,13 +31,20 @@ const Header = () => {
   >
     {btnNameReact}
     </button>
-   <Link to ="/">hom </Link>
-   <Link to ="/About" >about</Link>
-    <Link to ="/Contact">contact</Link>
-    <Link to ="/">cart</Link>
+    <ul>
+    <li>onlineStatus { onlineStatus?" ********** ": " *  " }</li>
+    <li><Link to ="/">hom </Link></li>
+     <li><Link to ="/About" >about</Link></li>
+    <li> <Link to ="/Contact">contact</Link></li>
+    <li> <Link to ="/">cart</Link></li>
+    {/* <li> <Link to ="/restaurant/:resid"></Link></li> */}
+   
+   
+   
+   
 
-    <Link to ="/restaurant/:resid"></Link>
-    <li>Cart</li>
+   
+   
     </ul>
     </div>
     </div>
