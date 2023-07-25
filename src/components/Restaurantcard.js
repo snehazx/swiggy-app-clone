@@ -4,7 +4,7 @@ import React from "react";
 // import Body from "./Body";
 import Resobj from "./Resobj";
 import Body from "./Body";
-import {cloud_img} from "./utils/constants"
+import {cloud_img} from "../utilities/constants";
 const Restaurantcard = (props) =>{
     const {data} = props
     if (!data) {

@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Restaurantcard from "./Restaurantcard";
-// import resobj from "./resobj";
-// import Resobj from "./Resobj";
 import { useState } from "react";
 import { useEffect } from "react";
-import {total_list} from "./utils/constants";
+import {res_api} from "../utilities/constants";
 import { Link } from "react-router-dom";
 const  Body = () =>{
   const [restrauntlist,setrestrauntlist] = useState([]);
@@ -16,38 +14,48 @@ useEffect(() => {
 } , [] );
  
   const fetchdata = async () =>{
-   const data = await fetch(total_list);
+   const data = await fetch(res_api);
    const json = await data.json();
      setrestrauntlist(json?.data?.cards[2]?.data?.data?.cards);
      setFilteredrestraunt(json?.data?.cards[2]?.data?.data?.cards);
   };
+   if(!filteredrestraunt ){ return <h1>Loading.......</h1>}
+
     return( <React.Fragment>
      <div className="body">
-      <div className="search">           
+      <div className="search m-4 p-4">           
             <input
                type ="text"
-               className="search"
+               className="border border-solid border-black"
                value={searchtext}
                onChange={(e) => {setSearchtext(e.target.value);}} /> 
-           <button  onClick = { () =>
+
+
+           <button  className="px-4 py-2 bg-green-100 m-4" 
+            onClick = { () =>
              {    const filteredlist =
                 restrauntlist.filter((res) =>
                 res.data.name.toLowerCase().includes(searchtext.toLowerCase()));
-                 setFilteredrestraunt(filteredlist); } }>search</button>
-      </div>
-      <button className="filter-btn"
+                 setFilteredrestraunt(filteredlist); } }> search </button>
+            </div>
+
+
+      <button className="flex   bg-gray-100 "
       onClick ={()  =>{
            const filteredrestraunt = restrauntlist.filter 
            ((res) => res.data.avgRating > 4 );
            setFilteredrestraunt(filteredrestraunt);
       }}>
       Top Rated Restraunt</button>
+
+
+
        <div className="res-container">
-         {  filteredrestraunt.map((item) =>
+         {  filteredrestraunt.map((restaurant) =>
          <Link 
          key ={restaurant.data.id}
          to = {"/restaurant/" + restaurant.data.id} 
-         > <Restaurantcard  data ={...item.data}      />
+         > <Restaurantcard  data ={...restaurant.data}      />
          </Link> )}        
        </div>  
        </div>
