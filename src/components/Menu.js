@@ -3,6 +3,7 @@ import { useParams} from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
 import useRestaurantMenu from "../utilities/useRestaurantMenu";
+import Restaurantcategory from "./Restaurantcategory";
 // import { menu_link } from "./utils/constants";
 const Menu = () => {
     //    const [resinfo,setresinfo] = useState([]);  
@@ -17,8 +18,13 @@ const Menu = () => {
 //             return<h1>Loading...<h1>;
 // }   
 const menuCards =
-    resinfo?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[1].card
-      ?.card?.itemCards;
+    resinfo?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter((c)=>
+    c.card?.["card"]?.["@type"]==="type.googleapis.com/swiggy.presentation.food.v2.ItemCategory");
+    
+    
+    
+    
+    // [1].card ?.card?.itemCards;
 
 // const menuItemCards =
 // resinfo?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter(
@@ -34,19 +40,24 @@ const menuCards =
     //     "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
     // ).card?.card;
 return(
-    <div>
-   <h1>{name}</h1> 
-    <p>{cuisines}</p>
-   <h2>{costfortwo}</h2>
+    <div className="text-center">
+   <h1 className="font-bold my-6 text-2xl">{name}</h1> 
+    <p className="font-bold text-lg">{cuisines.join(",")}- {costfortwo}</p>
+   
 
-   <ul>
-   {menuCards.map((item) => 
-   <li key={item.card.info.id}>
-   {item.card.info.name}
-   </li>)}
+   
+   {menuCards.map((item) => (<Restaurantcategory data= {category?.card?.card}/>)
 
-   </ul>
+
+   )}
+
+   
     </div>
    );
 ;}
  export default Menu;
+ 
+   {/* <li key={item.card.info.id}>
+
+   {item.card.info.name} */}
+   {/* </li> */}

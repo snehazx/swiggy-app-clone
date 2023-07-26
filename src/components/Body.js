@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Restaurantcard from "./Restaurantcard";
+import Restaurantcard,{withpromotedlabel} from "./Restaurantcard";
 import { useState } from "react";
 import { useEffect } from "react";
 import {res_api} from "../utilities/constants";
@@ -8,7 +8,10 @@ const  Body = () =>{
   const [restrauntlist,setrestrauntlist] = useState([]);
   const [searchtext, setSearchtext]    = useState("");
   const [filteredrestraunt,setFilteredrestraunt]  = useState([]);
-  
+
+  const RestaurantcardPromoted  = withpromotedlabel(Restaurantcard);
+
+ 
 useEffect(() => {
   fetchdata()
 } , [] );
@@ -19,10 +22,11 @@ useEffect(() => {
      setrestrauntlist(json?.data?.cards[2]?.data?.data?.cards);
      setFilteredrestraunt(json?.data?.cards[2]?.data?.data?.cards);
   };
-   if(!filteredrestraunt ){ return <h1>Loading.......</h1>}
-
+   if(!filteredrestraunt ){  <h1>Loading.......</h1> }
+else{
     return( <React.Fragment>
      <div className="body">
+      <div  className=" flex">
       <div className="search m-4 p-4">           
             <input
                type ="text"
@@ -31,7 +35,7 @@ useEffect(() => {
                onChange={(e) => {setSearchtext(e.target.value);}} /> 
 
 
-           <button  className="px-4 py-2 bg-green-100 m-4" 
+           <button  className="px-4 py-2 bg-green-100 m-4 rounded-lg" 
             onClick = { () =>
              {    const filteredlist =
                 restrauntlist.filter((res) =>
@@ -39,26 +43,30 @@ useEffect(() => {
                  setFilteredrestraunt(filteredlist); } }> search </button>
             </div>
 
-
-      <button className="flex   bg-gray-100 "
+        <div  className="search m-4 p-4 flex items-center" >
+      <button className="  px-4 py-2 bg-gray-100 rounded-lg "
       onClick ={()  =>{
            const filteredrestraunt = restrauntlist.filter 
            ((res) => res.data.avgRating > 4 );
            setFilteredrestraunt(filteredrestraunt);
       }}>
       Top Rated Restraunt</button>
+      </div>
+      </div>
 
 
-
-       <div className="res-container">
-         {  filteredrestraunt.map((restaurant) =>
-         <Link 
+       <div className=" flex-wrap flex">
+         {  filteredrestraunt.map((restaurant) =>(
+                   <Link 
          key ={restaurant.data.id}
          to = {"/restaurant/" + restaurant.data.id} 
-         > <Restaurantcard  data ={...restaurant.data}      />
-         </Link> )}        
+         >
+         {restaurant.data.Promoted ?
+          (<RestaurantcardPromoted  data ={...restaurant.data} /> )   :  (<Restaurantcard   data ={...restaurant.data}   />)
+         }
+         </Link>) )}       
        </div>  
        </div>
-     </React.Fragment>)}
+     </React.Fragment>)}}
   export default Body;
 
