@@ -1,0 +1,91 @@
+.restuarant-details-container {
+	 max-width: 800px;
+	 margin: 20px auto;
+}
+ .restuarant-details-container .cost-for-two {
+	 font-size: 1.1rem;
+	 font-weight: 800;
+	 margin-bottom: 0.7rem;
+}
+ .restuarant-details-container .dotted-line {
+	 border-top: 1px dotted #000;
+	 margin-bottom: 10px;
+}
+ .restuarant-details-container .restaurant-info {
+	 display: flex;
+	 justify-content: space-between;
+}
+ .restuarant-details-container .restaurant-info .restaurant-ratings-container {
+	 display: flex;
+	 flex-direction: column;
+	 justify-content: space-evenly;
+	 border: 1px solid #e9e9eb;
+	 margin: 14px;
+	 padding: 5px;
+}
+ .restuarant-details-container .restaurant-info .restaurant-ratings-container .avg-ratings {
+	 color: #3d9b6d;
+	 padding-bottom: 10px;
+	 border-bottom: 1px solid #e9e9eb;
+	 font-weight: 700;
+	 margin-bottom: 8px;
+	 display: block;
+	 text-align: center;
+}
+ .restuarant-details-container .restaurant-info .restaurant-ratings-container .total-ratings {
+	 font-weight: 600;
+	 font-size: 12px;
+	 color: #8b8d97;
+}
+ .restuarant-details-container .restaurant-info .restaurant-address-container {
+	 font-family: ProximaNova, arial, Helvetica Neue, sans-serif;
+}
+ .restuarant-details-container .restaurant-info .restaurant-address-container p {
+	 margin: 0;
+	 padding: 0;
+}
+ .restuarant-details-container .restaurant-info .restaurant-address-container .restaurant-name {
+	 font-size: 1.43rem;
+	 font-weight: 600;
+	 color: #282c3f;
+	 margin-bottom: 8px;
+	 text-transform: capitalize;
+}
+ .restuarant-details-container .restaurant-info .restaurant-address-container .area-name {
+	 font-size: 0.9rem;
+	 color: #7e808c;
+	 margin-bottom: 2px;
+}
+ .restuarant-details-container .restaurant-info .restaurant-address-container .cuisines {
+	 font-size: 0.9rem;
+	 color: #7e808c;
+}
+ .accordion .accordion-item {
+	 border-bottom: 1px solid #ccc;
+}
+ .accordion .accordion-item .accordion-header {
+	 cursor: pointer;
+	 height: 50px;
+	 display: flex;
+	 align-items: center;
+	 padding: 0 16px;
+	 font-weight: bold;
+	 font-size: 1.2rem;
+	 transition: background-color 0.3s;
+	 background-color: #ccc;
+}
+ .accordion .accordion-item .accordion-header:hover {
+	 background-color: #f2f2f2;
+}
+ .accordion .accordion-item .accordion-content {
+	 display: none;
+	 padding: 16px;
+	 color: #3e4152;
+}
+ .accordion .accordion-item .accordion-content.expanded {
+	 display: block;
+}
+ .accordion .accordion-item:first-child .accordion-content {
+	 display: block;
+}
+ 
