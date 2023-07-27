@@ -1,60 +1,76 @@
-// import { useEffect } from "react";
-import { useParams} from "react-router-dom";
-import { useState } from "react";
-import { useEffect } from "react";
+import "../css/Menu.css";
+import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utilities/useRestaurantMenu";
-import Restaurantcard from "./Restaurantcard";
-// import Restaurantcategory from "./Restaurantcategory";
-// import { menu_link } from "./utils/constants";
+import MenuCard from "./MenuCard";
 const Menu = () => {
-    //    const [resinfo,setresinfo] = useState([]);  
-        const {resid} = useParams();
-   
-    const resinfo = useRestaurantMenu(resid);
-        if(resinfo.length===0){return <shimmer/>}  
-   
-          const{ name,cuisines,costfortwo } =  resinfo?.cards[0]?.card?.card?.info || {};
-        //   const  {itemCards}  = resinfo?.cards[2]?.GroupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards;
-//           if(!itemCards){
-//             return<h1>Loading...<h1>;
-// }   
-const menuCards =
-    resinfo?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[1].card ?.card?.itemCards;
+  const { resid } = useParams();
+  const { resDetails, menuItemCards } = useRestaurantMenu(resid);
+  const {
+    name,
+    areaName,
+    costForTwoMessage,
+    avgRatingString,
+    cuisines,
+    totalRatingsString,
+  } = resDetails?.[0]?.card?.card?.info || {};
 
-    // const menuCards =resinfo?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter((c)=>  c.card?.["card"]?.["@type"]==="type.googleapis.com/swiggy.presentation.food.v2.ItemCategory");
-    
-    
-    
-    
-   
-// const menuItemCards =
-// resinfo?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter(
-//   (card) =>
-//     card?.card?.card?.["@type"] ==
-//     "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
-// );
-        {/* //   const { itemCards}  = resinfo?.cards[2]?.GroupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card; */}
-    //     const {itemCards} =
-    // resinfo?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter(
-    //   (card) =>
-    //     card?.card?.card?.["@type"] ==
-    //     "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
-    // ).card?.card;
-return(
-    <div className="text-center">
-   <h1 className="font-bold my-6 text-2xl">{name}</h1> 
-    <p className="font-bold text-lg">{cuisines.join(",")}- {costfortwo}</p>
-   
+  return (
+    <div className="restuarant-details-container">
+      <div className="restaurant-info">
+        <div className="restaurant-address-container">
+          <p className="restaurant-name">{name}</p>
+          <p className="area-name">{areaName}</p>
+          <p className="cuisines">{cuisines?.join(", ")}</p>
+        </div>
+        <div className="restaurant-ratings-container">
+          <div className="avg-ratings">{avgRatingString}</div>
+          <div className="total-ratings">{totalRatingsString}</div>
+        </div>
+      </div>
+      <div className="dotted-line"></div>
+      <div className="cost-for-two">{costForTwoMessage}</div>
 
-{ menuCards.map((item) =>  {item.card.info.name}  )}
-  
-   {/* {menuCards.map((item) => (<Restaurantcategory data= {category?.card?.card}/>))} */}
+      <div className="offers-container">
+        <div className="offer-card"></div>
+      </div>
+      <div>
+        {menuItemCards?.map((card) => (
+          <>
+            <div className="accordion">
+              <div className="accordion-item">
+                <div className="accordion-header">
+                  {card?.card?.card?.title}
+                </div>
+                <div className="accordion-content">
+                  {card?.card?.card?.itemCards.map((itemCard) => (
+                    <MenuCard
+                      key={itemCard?.card?.info?.id}
+                      info={itemCard?.card?.info}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+            {/* <h3 key={card?.card?.card?.id}>{card?.card?.card?.title}</h3> */}
+            {/* {card?.card?.card?.itemCards.map((itemCard) => (
+              <MenuCard
+                key={itemCard?.card?.info?.id}
+                info={itemCard?.card?.info}
+              />
+            ))} */}
+          </>
+        ))}
+      </div>
     </div>
-   );
-;}
- export default Menu;
- 
-   {/* <li key={item.card.info.id}>
+  );
+};
+export default Menu;
 
-   {item.card.info.name} */}
-   {/* </li> */}
+{
+  /* <li key={item.card.info.id}>
+
+   {item.card.info.name} */
+}
+{
+  /* </li> */
+}

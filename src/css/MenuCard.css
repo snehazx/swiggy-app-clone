@@ -1,0 +1,37 @@
+.menu-container {
+	 display: flex;
+	 justify-content: space-between;
+	 border-bottom: 0.5px solid #d3d3d3;
+	 padding: 5px 5px 15px 5px;
+	 margin-bottom: 10px;
+}
+ .menu-container .menu-details-container .menu-item-description {
+	 margin-top: 8px;
+	 padding-top: 5px;
+	 padding-right: 10px;
+	 color: rgba(40, 44, 63, 0.45);
+}
+ .menu-container .menu-details-container .menu-item-name {
+	 font-size: 1.1rem;
+	 font-weight: 600;
+	 color: #3e4152;
+}
+ .menu-container .menu-item-img-container {
+	 position: relative;
+}
+ .menu-container .menu-item-img-container .menu-item-img {
+	 height: 96px;
+	 border-radius: 15px;
+	 width: 118px;
+}
+ .menu-container .menu-item-img-container .add-to-cart-btn {
+	 position: absolute;
+	 bottom: 0;
+	 left: 11%;
+	 color: #60b246;
+	 width: 90px;
+	 height: 34px;
+	 background-color: white;
+	 border: 0.5px solid gray;
+}
+ 
