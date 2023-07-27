@@ -1,11 +1,9 @@
 import React from "react";
-// import  ReactDOM  from "react";
-// import resobj from "./resobj";
-// import Body from "./Body";
 import Resobj from "./Resobj";
 import Body from "./Body";
 import {cloud_img} from "../utilities/constants";
 const Restaurantcard = (props) =>{
+  console.log();
     const {data} = props
     if (!data) {
       return null;
@@ -39,16 +37,16 @@ const Restaurantcard = (props) =>{
   };
   export default Restaurantcard;
 
-  export const withpromotedlabel =(Restaurantcard)=>{
-  return(props) =>{
-  return(
- <div>
-<label className="absolute bg-black text-white m-2 p-2 rounded-lg">Promoted   {...props}</label>
-<Restaurantcard/>
- </div>
-  )
-  }
-  };
+//   export const withpromotedlabel =(Restaurantcard)=>{
+//   return(props) =>{
+//   return(
+//  <div>
+// <label className="absolute bg-black text-white m-2 p-2 rounded-lg">Promoted   </label>
+// <Restaurantcard  {...props}/>
+//  </div>
+//   )
+//   }
+//   };
 
 
   

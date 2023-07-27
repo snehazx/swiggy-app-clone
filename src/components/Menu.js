@@ -3,7 +3,8 @@ import { useParams} from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
 import useRestaurantMenu from "../utilities/useRestaurantMenu";
-import Restaurantcategory from "./Restaurantcategory";
+import Restaurantcard from "./Restaurantcard";
+// import Restaurantcategory from "./Restaurantcategory";
 // import { menu_link } from "./utils/constants";
 const Menu = () => {
     //    const [resinfo,setresinfo] = useState([]);  
@@ -18,14 +19,14 @@ const Menu = () => {
 //             return<h1>Loading...<h1>;
 // }   
 const menuCards =
-    resinfo?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter((c)=>
-    c.card?.["card"]?.["@type"]==="type.googleapis.com/swiggy.presentation.food.v2.ItemCategory");
-    
-    
-    
-    
-    // [1].card ?.card?.itemCards;
+    resinfo?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[1].card ?.card?.itemCards;
 
+    // const menuCards =resinfo?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter((c)=>  c.card?.["card"]?.["@type"]==="type.googleapis.com/swiggy.presentation.food.v2.ItemCategory");
+    
+    
+    
+    
+   
 // const menuItemCards =
 // resinfo?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter(
 //   (card) =>
@@ -45,13 +46,9 @@ return(
     <p className="font-bold text-lg">{cuisines.join(",")}- {costfortwo}</p>
    
 
-   
-   {menuCards.map((item) => (<Restaurantcategory data= {category?.card?.card}/>)
-
-
-   )}
-
-   
+{ menuCards.map((item) =>  {item.card.info.name}  )}
+  
+   {/* {menuCards.map((item) => (<Restaurantcategory data= {category?.card?.card}/>))} */}
     </div>
    );
 ;}
