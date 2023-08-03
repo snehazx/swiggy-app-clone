@@ -21,9 +21,9 @@ const Header = () => {
      </div>
     <div className="flex items-center">
   
-    
+  
     <ul className="flex m-4 p-4">
-    <li className="px-4">onlineStatus { onlineStatus?" ********** ": " *  " }</li>
+    <li className="px-4">onlineStatus { onlineStatus?"🟢": "🔴" }</li>
     <li  className="px-4"><Link to ="/">hom </Link></li>
      <li  className="px-4"><Link to ="/About" >about</Link></li>
     <li  className="px-4"> <Link to ="/Contact">contact</Link></li>
