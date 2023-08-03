@@ -18,25 +18,13 @@ const Menu2 =()=>{
  <p>
     {cuisines.join(",")} - {costForTwoMessage}
  </p>
-  
-
-
-
  {menuItemCards?.map((card) => <Menucard2  data={card?.card?.card}  />)}
  {/* {card?.card?.card?.itemCards.map((itemCard) => (
                     <MenuCard
                       key={itemCard?.card?.info?.id}
                       info={itemCard?.card?.info}
                     />  ))} */}
-
-
-
   </div>
-
-
   );
-
-
-
-
 }
+export default Menu2;

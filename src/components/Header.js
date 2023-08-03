@@ -8,7 +8,7 @@ import useOnlineStatus from "../utilities/useOnlineStatus";
 
 const Header = () => {
   const [btnNameReact,setBtnNameReact] = useState("login");
-  const  onlineStatus= useOnlineStatus();
+  const  status= useOnlineStatus();
 
   return(
    
@@ -23,8 +23,8 @@ const Header = () => {
   
   
     <ul className="flex m-4 p-4">
-    <li className="px-4">onlineStatus { onlineStatus?"🟢": "🔴" }</li>
-    <li  className="px-4"><Link to ="/">hom </Link></li>
+    <li className="px-4"> { status?"online 🟢": "offline 🔴" }</li>
+    <li  className="px-4"><Link to ="/">home </Link></li>
      <li  className="px-4"><Link to ="/About" >about</Link></li>
     <li  className="px-4"> <Link to ="/Contact">contact</Link></li>
     <li  className="px-4"> <Link to ="/">cart</Link></li>

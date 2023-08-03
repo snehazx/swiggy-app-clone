@@ -1,6 +1,6 @@
 import Itemlist from "./Itemlist";
 import {menuItemCards} from "../utilities/useRestaurantMenu";
-import React from "react";
+
 import Itemlist from "./Itemlist";
 const Menucard2 = (data) => {
   return

@@ -8,7 +8,8 @@ import About from "./src/components/About";
 import Contact from "./src/components/Contact";
 import Error from "./src/components/Error"; 
 // import Menu from "./src/components/Menu"
-import Menu2 from "./src/components/Menu2"
+
+import Menu2 from "./src/components/Menu2";
 // import Grocery from "./Grocery";
 
 const Grocery = lazy(() =>
