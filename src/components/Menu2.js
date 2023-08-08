@@ -12,19 +12,21 @@ const Menu2 =()=>{
     cuisines,
     totalRatingsString,
   } = resDetails?.[0]?.card?.card?.info || {};
-  return(
-  <div className="text-center">
-  <h1 className="font-bold my-10">{name}</h1>
- <p>
-    {cuisines.join(",")} - {costForTwoMessage}
- </p>
- {menuItemCards?.map((card) => <Menucard2  data={card?.card?.card}  />)}
- {/* {card?.card?.card?.itemCards.map((itemCard) => (
+  return (
+    <div className="text-center">
+      <h1 className="font-bold my-10">{name}</h1>
+      <p>
+        {cuisines?.join(",")} - {costForTwoMessage}
+      </p>
+      {menuItemCards?.map((card) => (
+        <Menucard2 data={card?.card?.card} />
+      ))}
+      {/* {card?.card?.card?.itemCards.map((itemCard) => (
                     <MenuCard
                       key={itemCard?.card?.info?.id}
                       info={itemCard?.card?.info}
                     />  ))} */}
-  </div>
+    </div>
   );
 }
 export default Menu2;
