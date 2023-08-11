@@ -1,18 +1,29 @@
-import Itemlist from "./Itemlist";
 
+
+import { useState } from "react";
 import Itemlist from "./Itemlist";
-const Menucard2 = (data) => {
+const Menucard2 = ({data, showItems,setShowIndex}) => {
+
+  // const [showItems,setShowItems] = useState(false);
+  const handleClick = () => {
+     setShowIndex() ;
+  }
+//  console.log(data);
   return (
+   
     <div>
       <div className="w=6/12 mx-auto my-4 justify-between bg-gray-50 shadow-lg p-4">
-        <span className="font-bold text-lg">
-          {data?.title} {data?.itemCards?.length}
-        </span>
-        <span>⬇️</span>
+        <div className="cursor-pointer " onClick= {handleClick} >
+        <span className="font-bold text-lg" >
+          {data?.title}  ({data?.itemCards?.length})
+        </span>  
+      <span>⬇️</span>
       </div>
-      {data?.data?.itemCards?.map((itemCard) => (
-        <Itemlist key={itemCard?.card?.info?.id} info={itemCard?.card?.info} />
-      ))}
+        {showItems &&      data?.data?.itemCards?.map((itemCard) => (
+        <Itemlist key={itemCard?.card?.info?.id}   info={itemCard?.card?.info} /> 
+      )) }
+      </div>
+     
     </div>
   );
 };
