@@ -30,13 +30,15 @@ const Applayout = () => {
   },[])
 
     return (
-      <Provider   store={appStore}>
-    <userName.Provider value={{loginuser:userId}}>
-    <div className="app">
-    <Header/>
-    <Outlet/> </div>
-    </userName.Provider>
-    </Provider>); };
+      <Provider store={appStore}>
+        <userName.Provider value={{ loginuser: userId }}>
+          <div className="app">
+            <Header />
+            <Outlet />{" "}
+          </div>
+        </userName.Provider>
+      </Provider>
+    ); };
 
 
 const appRouter = createBrowserRouter([
