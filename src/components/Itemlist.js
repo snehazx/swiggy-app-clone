@@ -7,7 +7,7 @@ const Itemlist = ({ info }) => {
   const handleAddItem = (item) =>{
     dispatch(addItem(item));
   }
-  console.log(info);
+  console.log("---->", info);
   const { name, description, price, imageId, isVeg, category } = info;
   return (
     <>
@@ -17,18 +17,20 @@ const Itemlist = ({ info }) => {
             <span>{name}</span>
             <span> - ₹{price / 100} </span>{" "}
             <p className="text-xs ">{description}</p>
-            </div>
-        <div className=" w-6/12 p-4">
-          <div className=" flex flex-col items-center ">
-            
-            <div className="w-[100px]">
-              <img src={cloud_img + imageId} className="w-full  " />
-            </div>
-            <button className=" p-2 mx-16 rounded-lg bg-black text-white shadow-lg" onClick={(item) => handleAddItem(item)}>
-              Add +
-            </button>
           </div>
-        </div>
+          <div className=" w-6/12 p-4">
+            <div className=" flex flex-col items-center ">
+              <div className="w-[100px]">
+                <img src={cloud_img + imageId} className="w-full  " />
+              </div>
+              <button
+                className=" p-2 mx-16 rounded-lg bg-black text-white shadow-lg"
+                onClick={(item) => handleAddItem(info)}
+              >
+                Add +
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </>
