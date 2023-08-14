@@ -19,7 +19,7 @@ const Menucard2 = ({data, showItems,setShowIndex}) => {
         </span>  
       <span>⬇️</span>
       </div>
-        {showItems &&      data?.data?.itemCards?.map((itemCard) => (
+        {showItems &&    data?.itemCards?.map((itemCard) => (
         <Itemlist key={itemCard?.card?.info?.id}   info={itemCard?.card?.info} /> 
       )) }
       </div>

@@ -2,26 +2,24 @@ import React, { useState } from "react";
 import  ReactDOM  from "react";
 import "../../index.css";
 import {CDN_URL} from "../utilities/constants";
-import { useState } from "react";
+import { useSelector } from "react-redux";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utilities/useOnlineStatus";
-
+import userName from "../utilities/userName";
 const Header = () => {
   const [btnNameReact,setBtnNameReact] = useState("login");
   const  status= useOnlineStatus();
-
-  return(
-   
-      <div className="flex justify-between bg-pink-100 shadow-lg ">
+  const {loginuser} = useContext(userName);
+  // subscribing to store using selector
+  const cartItems = useSelector((store) => store.cart.items);
+  console.log(cartItems);
+  return(  <div className="flex justify-between bg-pink-100 shadow-lg ">
     <div className="logo-container">
     <img
      className="w-20"
-     src ={CDN_URL}
-    />
-     </div>
+     src ={CDN_URL} /> </div>
     <div className="flex items-center">
-  
-  
     <ul className="flex m-4 p-4">
     <li className="px-4"> { status?"online 🟢": "offline 🔴" }</li>
     <li  className="px-4"><Link to ="/">home </Link></li>
@@ -34,17 +32,11 @@ const Header = () => {
      btnNameReact ==="login"?
       
       setBtnNameReact("logout"):
-      setBtnNameReact("login");
-
-      }}
-  >
+      setBtnNameReact("login"); }}>
     {btnNameReact}
     </button>
-   
-   
-
-   
-   
+    <li  className="px-4 font-bold"> {loginuser}</li>
+    <li  className="px-4 font-bold"><Link to ="/cart">Cart 🛒 ({cartItems.length})</Link></li>
     </ul>
     </div>
     </div>

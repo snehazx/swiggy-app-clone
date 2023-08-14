@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import Resobj from "./Resobj";
 import Body from "./Body";
+import { useContext } from "react";
+import userName from "../utilities/userName";
 import {cloud_img} from "../utilities/constants";
 const Restaurantcard = (props) =>{
   console.log();
@@ -16,7 +18,9 @@ const Restaurantcard = (props) =>{
     avgRating,
     cloudinaryImageId
     }   = data;
+    const {loginuser} = useContext(userName);
     return(
+       
      <div className="m-4 p-4 w-[250px] rounded-lg bg-gray-200 hover:bg-gray-300 " >
        {/* <img
           alt="res-logo"
@@ -32,6 +36,8 @@ const Restaurantcard = (props) =>{
      <h4>{deliveryTime}</h4>
      {/* <h5>{"https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/rmnzl74nmlldrsv9bnvkcloudinaryImageId" }</h5> */}
      <h6>{costForTwo}</h6>
+     <h7>{loginuser}</h7>
+
      </div>
     )
   };
